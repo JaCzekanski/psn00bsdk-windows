@@ -1,0 +1,19 @@
+language: shell
+os: windows
+
+script:
+  - choco install -y msys2
+  - export shell="cmd.exe //C RefreshEnv.cmd & C:/tools/msys64/msys2_shell.cmd -defterm -mingw64 -no-start -full-path -here -c \$\* --"
+  - $shell ./build.sh
+
+deploy:
+  provider: releases
+  api_key:
+    secure: Wzge8UGkov8Mn3c74FvNjeV9jcY1Xwhb1CAqvzu15WsV5DOPAoSvUvEShDqvmn5SDhz2W2QdzQWoaQDHO5f9yf78+aL2OxM57a8qsZ22V7tp9sSZSm0c+KdKAKexy4l01Se+RMr+KbLjtCkrsYwGS1a1UqH02CtqFpx2kV7dtrICFsI2v83WHxSvTvPn3jeRtombatfDBqWFMoXvE1fJJMGlCT6OzG0zJEJqkP99JymSrzZ1tNey/N+hT/MajvuwNnf64pOToJQCeGV0/teOLrJoH4WGg00FahDoz7n/pzjFlzG9JtGL+jweEAk6u2GHvgqp40pevA20HOo9YRXSQKtR5diJu+oDzu0bT2LOV0o+9L0ByZOuGIr9XGHn4rlFuT8vEzeezX062xzw3T80J5G8CFy+mHEAfA7IrkVLUjs79kavXYffK+bWY/ai3/CjgapiJDecQg8NCwhpJ+j8Bwa4TQyJzBXo1hXTcmM6oKJ1kDHVCDLPDG4lj5NnNahlAtxELrXg0taom8DFA5LgNKDxjT8nkgFHuV+uw5g5gFAAxDy3iBixRiETsUZs9BSWQsUYRe2tj7396ye37suoXCWAJf20kX9tYAK0lbx4o90fZuLVeVkbMA+VJpNTeq9mRZXEXdB5Z2WVFnLO9gHFxcwzSQ2UtxYgdLIVnF8wQdA=
+  file: toolchain.zip
+  on:
+    repo: JaCzekanski/psn00bsdk-windows
+
+notifications:
+  email: false
+  
